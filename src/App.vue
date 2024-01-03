@@ -1,33 +1,46 @@
 <template>
   <div class="container">
     <div class="cadr">
-      <h2>Slots</h2>
+      <h2>Dynamic and asynchronous components</h2>
+      <app-button
+        :color="active === 'one' ? 'primary' : ''"
+        @action="active = 'one'"
+        >One</app-button
+      >
+      <app-button
+        :color="active === 'two' ? 'primary' : ''"
+        @action="active = 'two'"
+        >Two</app-button
+      >
     </div>
-    <app-list>
-      <template #default="{ iter, idx }">
-        <span style="color: yellowgreen"
-          >Item: {{ iter }} and index {{ idx }}</span
-        >
-      </template>
-    </app-list>
-    <app-block>
-      <p>This is an important text</p>
-      <template #header>
-        <h3>This is the headline</h3>
-      </template>
-      <template v-slot:footer>
-        <hr />
-        <small>This is footer</small>
-      </template>
-    </app-block>
+    <!-- <app-text-one v-if="active === 'one'"></app-text-one>
+    <app-text-two v-else-if="active === 'two'"></app-text-two> -->
+    <keep-alive>
+      <component :is="componentName"></component>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import AppBlock from "./components/AppBlock.vue";
-import AppList from "./components/AppList.vue";
+import AppButton from "./components/AppButton.vue";
+import AppTextOne from "./components/AppTextOne.vue";
+import AppTextTwo from "./components/AppTextTwo.vue";
 export default {
-  components: { AppBlock, AppList },
+  data() {
+    return {
+      active: "one",
+    };
+  },
+  computed: {
+    componentName() {
+      // if (this.active === "one") {
+      //   return "app-text-one";
+      // }
+      // return "app-text-two";
+      return "app-text-" + this.active;
+    },
+  },
+  components: { AppButton, AppTextOne, AppTextTwo },
 };
 </script>
 

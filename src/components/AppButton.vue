@@ -25,9 +25,9 @@ export default {
   min-width: 100px;
   height: 30px;
   border-radius: 10px;
-  background-color: #2756a8ad;
-  border: transparent;
-  color: white;
+  background-color: transparent;
+  border: 1px solid #2756a8ad;
+  color: #2756a8ad;
   cursor: pointer;
 }
 
@@ -37,12 +37,16 @@ export default {
 }
 
 .primary {
-  color: orange;
-  border: 1px solid orange;
+  /* color: orange;
+  border: 1px solid orange; */
+  background-color: #2756a8ad;
+  border: transparent;
+  color: white;
 }
 
 .btn:hover {
   border: transparent;
   background-color: rgb(0, 119, 128);
+  color: white;
 }
 </style>
